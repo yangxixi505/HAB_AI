@@ -1,0 +1,13 @@
+name: Deploy with LFS
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          lfs: true  # 关键：拉取 LFS 文件
+      - run: git lfs install && git lfs pull  # 确保 LFS 文件被下载
+      # 添加后续构建步骤（如使用 Jekyll 等）
